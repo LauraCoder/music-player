@@ -7,12 +7,18 @@ import Separator from '../Custom/Separator'
 
 const PlaylistList = ({ active, touchableHandler }) => (
   <View style={styles.container}>
-    <Text heading>My Playlists</Text>
+    <View style={styles.column}>
+      <Text heading>My Playlists</Text>
+    </View>
     <Separator />
     <FlatList
       data={playlist}
       ItemSeparatorComponent={ () => <Separator /> }
       horizontal={true}
+      ListHeaderComponent={ () => <View /> }
+      ListHeaderComponentStyle={{ paddingLeft: 20 }}
+      ListFooterComponent={ () => <View /> }
+      ListFooterComponentStyle={{ paddingLeft: 20 }}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => touchableHandler(item.title)}
@@ -34,7 +40,10 @@ const styles = StyleSheet.create({
     flex: 0.42,
     marginBottom: 20,
     paddingRight: 0,
-    paddingLeft: 20,
+    paddingLeft: 0,
+  },
+  column: {
+    paddingLeft: 20
   }
 })
 
