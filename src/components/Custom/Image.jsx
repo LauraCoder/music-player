@@ -1,17 +1,20 @@
 import { Image as NativeImage, StyleSheet } from 'react-native'
 //import Icon from 'react-native-vector-icons/Ionicons'
 import theme from '../../theme'
+import images from '../../../assets/images'
 
-const Image = ({ style, image, albumImage, playlistImage, playlistImageActive }) => {
+const Image = ({ style, image, albumImage, playlistImage, playlistImageActive, spotifyIcon }) => {
   const imageStyle = [
     styles.defaultImage,
     albumImage && styles.albumImage,
     playlistImage && styles.playlistImage,
     playlistImageActive && styles.playlistImageActive,
+    spotifyIcon && styles.spotifyIcon,
     style,
   ]
 
   //if(image) return <Icon name='image-outline' style={styles.noImage} />
+  if (spotifyIcon) return <NativeImage style={imageStyle} source={images.spotifyLogo} />
 
   return <NativeImage style={imageStyle} source={{ uri: `${image}` }} />
 }
@@ -36,6 +39,10 @@ const styles = StyleSheet.create({
     borderRadius: theme.borders.borderRadius,
     width: 120,
     height: 140,
+  },
+  spotifyIcon: {
+    width: 100,
+    height: 30,
   }
   /*noImage: {
     borderRadius: theme.borders.borderRadius,

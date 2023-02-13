@@ -1,17 +1,19 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Constants from 'expo-constants'
 
 import theme from '../../theme'
 import Icon from '../Custom/Icon'
 
-const AppTopBar = () => {
+const AppTopBar = ({ drawer }) => {
   return (
     <View style={styles.containerMain}>
       <View style={styles.columnLeft}>
-        <Icon
-          md
-          iconName='menu'
-        />
+        <TouchableOpacity onPress={() => drawer.current.openDrawer()}>
+          <Icon
+            md
+            iconName='menu'
+          />
+        </TouchableOpacity>
       </View>
       <View style={styles.columnRight}>
         <Icon
