@@ -7,7 +7,7 @@ import AppTopBar from './AppBarTop/AppBarTop'
 import BurgerMenu from './BurgerMenu'
 import PlaylistScreen from './Playlists/index'
 
-const Main = () => {
+const Main = ({ token }) => {
   const drawer = useRef(null)
 
   return (
@@ -20,8 +20,8 @@ const Main = () => {
         <AppTopBar drawer={drawer} />
         <View style={styles.content}>
           <Routes>
-            <Route path="/" element={ <PlaylistScreen />} exact />
-            <Route path="/playlists" element={ <PlaylistScreen />} exact />
+            <Route path="/" element={ <PlaylistScreen token={token} />} exact />
+            <Route path="/playlists" element={ <PlaylistScreen token={token} />} exact />
             <Route path="*" element={<Navigate to="/" replace />} />s
           </Routes>
         </View>

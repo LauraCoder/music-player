@@ -32,27 +32,27 @@ const styles = StyleSheet.create({
   },
   playlistTitle: {
     position: 'absolute',
-    bottom: -8,
-    left: -3,
+    bottom: 0,
+    left: 0,
     width: 103,
     color: theme.colors.white,
     fontSize: 26,
     fontWeight: theme.fontWeights.bold,
-    //textShadowColor: theme.colors.primary,
-    //textShadowOffset: { width: 1, height: 1 },
-    //textShadowRadius: 3
+    textShadowColor: theme.colors.primary,
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3
   },
   playlistTitleActive: {
     position: 'absolute',
-    bottom: -10,
-    left: -3,
+    bottom: 0,
+    left: 0,
     width: 123,
     color: theme.colors.white,
     fontSize: 30,
     fontWeight: theme.fontWeights.bold,
-    //textShadowColor: theme.colors.primary,
-    //textShadowOffset: { width: 1, height: 1 },
-    //textShadowRadius: 3
+    textShadowColor: theme.colors.primary,
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3
   },
   light: {
     color: theme.colors.textSecondary

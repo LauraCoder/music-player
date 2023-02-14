@@ -1,36 +1,39 @@
 import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native'
 
-import { playlist } from '../../../data/playlists'
 import Text from '../Custom/Text'
 import PlaylistItem from './PlaylistItem'
 import Separator from '../Custom/Separator'
 
-const PlaylistList = ({ active, touchableHandler }) => (
+const PlaylistList = ({ active, touchableHandler, playlists }) => (
   <View style={styles.container}>
     <View style={styles.column}>
       <Text heading>My Playlists</Text>
     </View>
     <Separator />
     <FlatList
-      data={playlist}
+      data={playlists}
       ItemSeparatorComponent={ () => <Separator /> }
       horizontal={true}
       ListHeaderComponent={ () => <View /> }
       ListHeaderComponentStyle={{ paddingLeft: 20 }}
       ListFooterComponent={ () => <View /> }
       ListFooterComponentStyle={{ paddingLeft: 20 }}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          onPress={() => touchableHandler(item.title)}
-          activeOpacity={0.7}
-        >
-          <PlaylistItem
-            playlistTitle={item.title}
-            playlistImg={item.img}
-            isActive={active === item.title ? true : false}
-          />
-        </TouchableOpacity>
-      )}
+      renderItem={({ item }) => {
+        const playlistImg = item.images.map(img => img.url)
+        return (
+          <TouchableOpacity
+            onPress={() => touchableHandler(item)}
+            activeOpacity={0.7}
+          >
+            <PlaylistItem
+              playlistTitle={item.name}
+              playlistId={item.id}
+              playlistImg={playlistImg}
+              isActive={active === item.id ? true : false}
+            />
+          </TouchableOpacity>
+        )}
+      }
     />
   </View>
 )

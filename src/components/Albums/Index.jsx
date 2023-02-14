@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native'
 
-import { albums } from '../../../data/albums'
 import theme from '../../theme'
 import AlbumItem from './AlbumItem'
 import Icon from '../Custom/Icon'
 import Separator from '../Custom/Separator'
+import Text from '../Custom/Text'
 
-const AlbumList = ({ activePlaylistTitle }) => {
+const AlbumList = ({ playlistsItems, tracksTotal }) => {
   const [shuffleState, setShuffleState] = useState(false)
-  const activePlaylistAlbums = albums.filter(album => album.playlist === activePlaylistTitle)
 
   const shuffleList = (activePlaylistAlbums) => {
     let i = activePlaylistAlbums.length - 1
@@ -25,31 +24,43 @@ const AlbumList = ({ activePlaylistTitle }) => {
 
   return (
     <View style={styles.container}>
-      <View style={{ justifyContent: 'flex-end', flexDirection: 'row', marginBottom: 10 }}>
-        <Icon
-          sm
-          light
-          iconName='repeat'
-        />
-        <TouchableOpacity onPress={() => shuffleList(albums)}>
+      <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <Text>
+            {tracksTotal} tracks
+          </Text>
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
           <Icon
             sm
             light
-            iconName='shuffle'
+            iconName='repeat'
           />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => shuffleList(playlistsItems)}>
+            <Icon
+              sm
+              light
+              iconName='shuffle'
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <FlatList
-        data={activePlaylistAlbums}
+        data={playlistsItems}
         extraData={shuffleState}
         ItemSeparatorComponent={() => <Separator list />}
-        renderItem={({ item }) => (
-          <AlbumItem
-            title={item.title}
-            artist={item.artist}
-            albumImg={item.img}
-          />
-        )}
+        renderItem={({ item }) => {
+          const itemArtists = item.track.album.artists.map(artist => artist.name)
+          const itemImg = item.track.album.images.map(img => img.url)
+          return (
+            <AlbumItem
+              title={item.track.name}
+              artist={itemArtists}
+              albumImg={itemImg}
+            />
+          )
+        }
+        }
       />
     </View>
   )

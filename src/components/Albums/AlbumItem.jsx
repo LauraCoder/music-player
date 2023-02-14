@@ -3,34 +3,34 @@ import { StyleSheet, View } from 'react-native'
 import Image from '../Custom/Image'
 import Text from '../Custom/Text'
 
-const AlbumItem = ({ title, artist, albumImg }) => {
-  return (
-    <View style={styles.row}>
-      <Image
-        albumImage
-        image={albumImg}
-      />
-      <View style={styles.column}>
-        <Text subheading dark style={{ marginBottom: -2 }}>
+const AlbumItem = ({ title, artist, albumImg }) => (
+  <View style={styles.row}>
+    <Image
+      albumImage
+      image={albumImg[0]}
+    />
+    <View style={styles.column}>
+      <View style={styles.row}>
+        <Text subheading dark >
           {title}
         </Text>
+      </View>
+      <View style={styles.row}>
         <Text subheading light>
           {artist}
         </Text>
       </View>
     </View>
-  )
-}
+  </View>
+)
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    flex: 1
   },
   column: {
     flexDirection: 'column',
-    flexWrap: 'wrap',
     flex: 1,
     marginLeft: 27,
     justifyContent: 'center',

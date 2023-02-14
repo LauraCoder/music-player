@@ -21,13 +21,14 @@ const App = () => {
     {
       responseType: ResponseType.Token,
       clientId: Constants.manifest.extra.clientId,
-      scopes: [/*
+      scopes: [
+        'playlist-read-private',
         'user-read-currently-playing',
         'user-read-recently-played',
         'user-read-playback-state',
         'user-top-read',
         'user-modify-playback-state',
-        'streaming',*/
+        'streaming',
         'user-read-email',
         'user-read-private',
       ],
@@ -51,7 +52,7 @@ const App = () => {
     <NativeRouter>
       {!token
         ? <Login promptAsync={promptAsync} />
-        : <Main />
+        : <Main token={token} />
       }
     </NativeRouter>
   )
